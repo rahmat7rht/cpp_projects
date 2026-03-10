@@ -2,7 +2,7 @@
 
 class MergeSort {
     public:
-        void sort(int *array, int size, bool reverse = false) {
+        void sort(int *array, size_t size, bool reverse = false) {
             this->reverse = reverse;
             temp_array = new int[size]; //allocate memory same size as the original array
             mergeSort(array, size);
@@ -13,17 +13,17 @@ class MergeSort {
         bool reverse = false;
         int *temp_array = nullptr;
 
-        void mergeSort(int *array, int size) {
+        void mergeSort(int *array, size_t size) {
             if (size <= 1) return; //break if the size is less or equal than one
             int middle = size / 2;
 
             mergeSort(array, middle); //left recursion, the size is half
-            mergeSort(array + middle, size - middle); //right recurtion, the begining of array is at the middle, size is also half
+            mergeSort(array + middle, size - middle); //right recursion, the begining of array is at the middle, size is also half
 
             merge(array, size, middle); //merge the two subarrays
         }
 
-        void merge(int *array, int size, int middle) {
+        void merge(int *array, size_t size, int middle) {
             int first = 0; //beginning of first sub array
             int second = middle; //beginning of second sub array
             int count = 0;
@@ -52,7 +52,7 @@ class MergeSort {
 
 };
 
-void print(int *array, int size) {
+void print(int *array, size_t size) {
     for (int i = 0; i < size; i++) {
         std::cout << array[i] << ((i + 1) < size? ", ":"\n");
     }
