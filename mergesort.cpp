@@ -2,30 +2,38 @@
 
 class MergeSort {
     public:
-        void mergeSort(int *array, int size) {
-            if (size <= 1) return;
-
-            int middle = size / 2;
-            int remain = size - (middle * 2); //a remaining element if the size is odd
-
-            if (size > 2) { //make subarray if the elements are more than two
-                mergeSort(array, middle); //left recursion
-                mergeSort(array + middle, middle + remain); //right recurtion
-            }
-
-            merge(array, size, middle); //merge the subarray
+        void sort(int *array, int size, bool reverse = false) {
+            this->reverse = reverse;
+            temp_array = new int[size]; //allocate memory same size as the original array
+            mergeSort(array, size);
+            delete [] temp_array; //delete allocated memory
         }
+
     private:
         bool reverse = false;
+        int *temp_array = nullptr;
+
+        void mergeSort(int *array, int size) {
+            if (size <= 1) return; //break if the size is less or equal than one
+            int middle = size / 2;
+
+            if (size > 2) { //make new subarray if the elements are more than two
+                //divide array into two halves
+                mergeSort(array, middle); //left recursion, the size is half
+                mergeSort(array + middle, size - middle); //right recurtion, the begining of array is at the middle, size is also half
+            }
+
+            merge(array, size, middle); //merge the two subarrays
+        }
 
         void merge(int *array, int size, int middle) {
-            int *temp_array = new int[size]; //allocated some memory for temp_array
             int first = 0; //beginning of first sub array
             int second = middle; //beginning of second sub array
             int count = 0;
 
             while (first < middle && second < size) {
-                if (array[first] < array[second]) {
+                //compare the elements in the two subarray
+                if (!reverse? (array[first] < array[second]) : (array[first] > array[second])) {
                     temp_array[count++] = array[first++];
                 } else {
                     temp_array[count++] = array[second++];
@@ -43,8 +51,6 @@ class MergeSort {
             for (count = 0; count < size; count++) {
                 array[count] = temp_array[count];
             }
-
-            delete [] temp_array; //delete allocated memory temp_array
         }
 
 };
@@ -63,7 +69,7 @@ int main() {
     std::cout << "Unsorted List:\n";
     print(list, size);
 
-    mergesort.mergeSort(list, size);
+    mergesort.sort(list, size);
     std::cout << "Sorted List:\n";
     print(list, size);
 }
