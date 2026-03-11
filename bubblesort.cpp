@@ -8,6 +8,8 @@ class BubbleSort {
 
     private:
         void bubbleSort(int *array, size_t size) {
+            if (size < 1) return;
+            
             int n = 0;
             int length = size;
             while (length > 0) {
