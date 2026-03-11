@@ -9,16 +9,16 @@ class BubbleSort {
     private:
         void bubbleSort(int *array, size_t size) {
             if (size < 1) return;
-            
-            int n = 0;
+
+            int count = 0;
             int length = size;
             while (length > 0) {
-                if (array[n] > array[n + 1]) {
-                    swap(array[n], array[n + 1]);
+                if (array[count] > array[count + 1]) {
+                    swap(array[count], array[count + 1]);
                 }
                 
-                if (++n >= length - 1) {
-                    n = 0;
+                if (++count >= length - 1) {
+                    count = 0;
                     length--;
                 }
             }
