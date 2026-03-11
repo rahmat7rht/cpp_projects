@@ -9,23 +9,23 @@ class SelectionSort {
     private:
         void selectionSort(int *array, size_t size) {
             if (size < 1) return;
-            
+
             int target = 0;
             int selected = 0;
-            int n = 0;
+            int count = 0;
 
             while (target < size) {
-                if (array[selected] > array[n]) {
-                    selected = n;
+                if (array[selected] > array[count]) {
+                    selected = count;
                 }
 
-                if (++n >= size) {
+                if (++count >= size) {
                     if (target != selected)
                         swap(array[target], array[selected]); //swap target element with the selected element
 
                     target++;
                     selected = target;
-                    n = target;
+                    count = target;
                 }
             }
         }
