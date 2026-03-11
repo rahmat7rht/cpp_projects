@@ -2,6 +2,11 @@
 
 class BubbleSort {
     public:
+        void sort(int *array, size_t size) {
+            bubbleSort(array, size);
+        }
+
+    private:
         void bubbleSort(int *array, size_t size) {
             int n = 0;
             int length = size;
@@ -34,10 +39,12 @@ int main() {
     int size = 8;
     int array[size] = {5, 3, 99, 32, 44, 2, 13, 11};
 
+    std::cout << "Unsorted list:\n";
     print(array, size);
 
     BubbleSort bubble;
+    bubble.sort(array, size);
 
-    bubble.bubbleSort(array, size);
+    std::cout << "Sorted list:\n";
     print(array, size);
 }
