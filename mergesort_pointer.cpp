@@ -4,8 +4,7 @@ class MergeSort {
     public:
         void sort(int *array, size_t size, bool reverse = false) {
             this->reverse = reverse;
-            all_size = size;
-            temp_array = new int[all_size]; //allocate memory same size as the original array
+            temp_array = new int[size]; //allocate memory same size as the original array
             mergeSort(array, array + size - 1);
             delete [] temp_array; //delete allocated memory
         }
@@ -13,7 +12,6 @@ class MergeSort {
     private:
         bool reverse = false;
         int *temp_array = nullptr;
-        size_t all_size;
 
         void mergeSort(int *start, int *end) {
             if ((end - start) < 1) return; //break if the size is less than one
