@@ -8,13 +8,13 @@ class QuickSort {
 
     private:
         int *partition(int *start, int *end) {
-            int *pivot = end; //pick the lass element as pivot
+            int *pivot = end; //pick the last element as pivot
             int *low = start; 
 
-            for (int *p = low; p < end; p++) {
-                if (*p < *pivot) {
-                    if (p != low)
-                        swap(*p, *low);
+            for (int *point = low; point < end; point++) {
+                if (*point < *pivot) { //compare the point value with the pivot, if less, swap with low pointer value
+                    if (point != low)
+                        swap(*point, *low);
                     low++; //move the low pointer to the next element
                 }
             }
@@ -24,11 +24,11 @@ class QuickSort {
         }
 
         void quickSort(int *start, int *end) {
-            if (end - start < 1) return; //break the recursion if the size is less than one
+            if (end - start < 1) return; //break the recursion if size is less than one
 
             int *pivot = partition(start, end); //get the pivot partition address
             
-            quickSort(start, pivot - 1); //make a new recursion with the end is the element before the pivot
+            quickSort(start, pivot - 1); //make a new recursion with the end is at the element before the pivot
             quickSort(pivot, end); //make a new recursion with the begining is at the pivot address
         }
 
