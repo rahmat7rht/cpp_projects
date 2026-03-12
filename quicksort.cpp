@@ -26,11 +26,11 @@ class QuickSort {
         void quickSort(int *array, size_t size) {
             if (size <= 1) return; //break the recursion if the size is less than two
 
-            int *po_partition = partition(array, size); //get the pivot last position
-            int sub_size = po_partition - array; //calculate the size of the last partition that contain elements less than the last pivot
+            int *po_pivot = partition(array, size); //get the pivot last position
+            int sub_size = po_pivot - array; //calculate the size of the last partition that contain elements less than the last pivot
 
             quickSort(array, sub_size); //make new recursion as the end is the last pivot
-            quickSort(po_partition, size - sub_size); //make new recursion as the begining is the last pivot
+            quickSort(po_pivot, size - sub_size); //make new recursion as the begining is the last pivot
         }
 
         void swap(int &a, int &b) {
