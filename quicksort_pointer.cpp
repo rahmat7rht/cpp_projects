@@ -13,7 +13,7 @@ class QuickSort {
 
             for (int *point = low; point < end; point++) {
                 if (*point < *pivot) { //compare the point value with the pivot, if less, swap with low pointer value
-                    if (point != low)
+                    if (point != low) //prevent swaping the same variable
                         swap(*point, *low);
                     low++; //move the low pointer to the next element
                 }
